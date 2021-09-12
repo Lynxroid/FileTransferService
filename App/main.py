@@ -9,11 +9,11 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi_utils.tasks import repeat_every
 
-BASE_DIR = './tmp'
-DOWNLOAD_EXPIRE_SECONDS = 60 * 3  # 3 minutes
-FILE_DELETE_TASK_INTERVAL = 10
-FILE_DELETE_INTERVAL = 60 * 5  # 5 minutes
-FILE_BUFFER_SIZE = 1024 * 64  # 64K Buffer
+BASE_DIR = os.getenv('FTS_BASE_DIR', './tmp')
+DOWNLOAD_EXPIRE_SECONDS = int(os.getenv('FTS_DOWNLOAD_EXPIRE_SECONDS', 60 * 3 ))  # 3 minutes
+FILE_DELETE_TASK_INTERVAL = int(os.getenv('FTS_FILE_DELETE_TASK_INTERVAL', 10 ))
+FILE_DELETE_INTERVAL = int(os.getenv('FTS_FILE_DELETE_INTERVAL', 60 * 5 ))  # 5 minutes
+FILE_BUFFER_SIZE = int(os.getenv('FTS_FILE_BUFFER_SIZE', 1024 * 64 ))  # 64K Buffer
 
 logger = logging.getLogger('uvicorn.error')
 
