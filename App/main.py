@@ -53,6 +53,13 @@ def on_start():
     if not os.path.exists(BASE_DIR):
         os.mkdir(BASE_DIR)
 
+    logger.info('Load Environment Settings')
+    logger.info(f'BASE_DIR := {BASE_DIR}')
+    logger.info(f'DOWNLOAD_EXPIRE_SECONDS := {DOWNLOAD_EXPIRE_SECONDS}')
+    logger.info(f'FILE_DELETE_TASK_INTERVAL := {FILE_DELETE_TASK_INTERVAL}')
+    logger.info(f'FILE_DELETE_INTERVAL := {FILE_DELETE_INTERVAL}')
+    logger.info(f'FILE_BUFFER_SIZE := {FILE_BUFFER_SIZE}')
+
 
 @app.on_event('startup')
 @repeat_every(seconds=FILE_DELETE_TASK_INTERVAL)
